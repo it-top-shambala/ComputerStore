@@ -15,6 +15,66 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <Grid ColumnDefinitions="*, 2*">
+        <ListBox Grid.Column="0"
+                 ItemsSource="{Binding Components}"
+                 SelectedItem="{Binding SelectedComponent}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid RowDefinitions="*, *, *"
+                              ColumnDefinitions="*, *">
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Id}"/>
+                    
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding Name}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding Type}"/>
+                    
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding Price}"/>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <StackPanel Grid.Column="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id"/>
+                    <TextBox Text="{Binding Id}"
+                             IsEnabled="False"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name"/>
+                    <TextBox Text="{Binding Name}"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Type"/>
+                    <TextBox Text="{Binding Type}"
+                             IsEnabled="False"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Price"/>
+                    <TextBox Text="{Binding Price}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Clear"
+                        Command="{Binding CommandClear}"/>
+                
+                <Button Content="Delete"
+                        Command="{Binding CommandDelete}"/>
+                
+                <Button Content="Save"
+                        Command="{Binding CommandSave}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+    
 </Window>
